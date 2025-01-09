@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
 import Faq from './pages/Faq.jsx'
-import Terms from './pages/Terms.jsx'
+import Terms from './pages/Terms.jsx' 
 import Privacy from './pages/Privacy.jsx'
+import './pages/Faq.css'
+import './pages/Privacy.css'
+import './pages/Terms.css'
 import './index.css'
 
 // Configuration des en-têtes de sécurité

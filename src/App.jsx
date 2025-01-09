@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './App.css'
 import { queryGroq } from './main.jsx'
 
@@ -135,9 +136,9 @@ function App() {
             <div className="footer-section">
               <h4>Ressources</h4>
               <ul>
-                <li><a href="/Faq">FAQ</a></li>
-                <li><a href="/Terms">Conditions d'utilisation</a></li>
-                <li><a href="/Privacy">Politique de confidentialité</a></li>
+                <li><Link to="/Faq">FAQ</Link></li>
+                <li><Link to="/Terms">Conditions d'utilisation</Link></li>
+                <li><Link to="/Privacy">Politique de confidentialité</Link></li>
               </ul>
             </div>
           </div>
