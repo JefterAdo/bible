@@ -1,5 +1,9 @@
 .env
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 node_modules/
 >>>>>>> f4fcedc (Ajout de .env et node_modules/ au .gitignore)
+=======
+node_modules/
+>>>>>>> origin/master
