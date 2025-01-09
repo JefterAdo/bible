@@ -11,9 +11,10 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': {
-        target: 'https://api.deepseek.com',
+        target: 'https://api.deepseek.com/v1',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/v1')
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     },
     hmr: {

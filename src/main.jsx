@@ -10,7 +10,7 @@ import './index.css'
 // Configuration des en-têtes de sécurité
 const meta = document.createElement('meta')
 meta.httpEquiv = "Content-Security-Policy"
-meta.content = import.meta.env.VITE_CSP
+meta.content = "default-src 'self'; connect-src 'self' https://api.groq.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
 document.head.appendChild(meta)
 
 // Configuration du router
@@ -34,19 +34,19 @@ const router = createBrowserRouter([
 ])
 
 // Configuration Groq API
-const groqConfig = {
-  apiUrl: import.meta.env.VITE_API_URL,
-  apiKey: import.meta.env.VITE_GROQ_API_KEY
+const apiConfig = {
+  apiUrl: 'https://api.groq.com/openai/v1/chat/completions',
+  apiKey: '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'
 }
 
-// Fonction sécurisée pour interagir avec Groq API
+// Fonction sécurisée pour interagir avec l'API
 export const queryGroq = async (query) => {
   try {
-    const response = await fetch(groqConfig.apiUrl, {
+    const response = await fetch(apiConfig.apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${groqConfig.apiKey}`
+        'Authorization': `Bearer ${apiConfig.apiKey}`
       },
       body: JSON.stringify({
         model: 'mixtral-8x7b-32768',
@@ -54,7 +54,8 @@ export const queryGroq = async (query) => {
           role: 'user',
           content: query
         }],
-        temperature: 0.7
+        temperature: 0.7,
+        max_tokens: 4096
       }),
       credentials: 'same-origin'
     });
@@ -67,7 +68,7 @@ export const queryGroq = async (query) => {
     return data.choices[0].message.content;
     
   } catch (error) {
-    console.error('Erreur lors de la requête à Groq:', error);
+    console.error('Erreur lors de la requête API:', error);
     throw error;
   }
 }

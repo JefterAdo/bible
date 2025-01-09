@@ -23,9 +23,15 @@ function App() {
       const answer = await queryGroq(
         `Réponds à cette question en te basant uniquement sur la Bible. Pour chaque réponse, cite les versets bibliques pertinents avec leur référence (livre, chapitre, verset). Question : ${question}`
       )
+      
+      if (!answer) {
+        throw new Error('Aucune réponse reçue de l\'API')
+      }
+      
       setResponse(answer)
     } catch (err) {
-      setError(err.message)
+      setError(`Erreur : ${err.message}`)
+      console.error('Erreur API:', err)
     } finally {
       setLoading(false)
     }
